@@ -115,3 +115,57 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+
+const centerOfnews= document.querySelector(".articles");
+
+function haberYapici(neHaber){
+
+  const {baslik,tarih,ilkParagraf,ikinciParagraf,ucuncuParagraf}= neHaber
+
+const divdivdiv = document.createElement("div");
+divdivdiv.setAttribute("class","article");
+
+const header = document.createElement("h2");
+header.textContent = baslik;
+divdivdiv.appendChild(header);
+
+const newsDate = document.createElement("p");
+newsDate.setAttribute("class","article date");
+newsDate.textContent=tarih;
+divdivdiv.appendChild(newsDate);
+
+const newsContent = document.createElementNS("p","p","p");
+newsContent.setAttribute("class","article")
+newsContent.textContent = ilkParagraf,ikinciParagraf,ucuncuParagraf;
+divdivdiv.appendChild(newsContent);
+
+const expButton = document.createElement("span");
+expButton.classList.add("article"); 
+expButton.textContent ="+";
+divdivdiv.appendChild(expButton);
+
+
+let isOpen=true;
+expButton.addEventListener("click",()=> {
+
+  if(isOpen){ 
+  divdivdiv.classList.toggle("article-open");
+  expButton.textContent="-";
+return isOpen=false}
+
+  else{ 
+  divdivdiv.classList.toggle("article-open");
+  return isOpen=true}
+
+});
+
+return divdivdiv;
+
+}
+console.log(haberYapici(data));
+
+
+
+data.forEach(component => {
+  centerOfnews.appendChild(haberYapici(component));
+});
